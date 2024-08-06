@@ -4,7 +4,7 @@ services:
   host-jenkins:
     image: host-jenkins
     container_name: host-jenkins
-     privileged: true
+    privileged: true
     restart: on-failure
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
