@@ -4,22 +4,29 @@ services:
   host-jenkins:
     image: host-jenkins
     container_name: host-jenkins
+     privileged: true
     restart: on-failure
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DOCKER_TLS_VERIFY=0
+      - DOCKER_CERT_PATH=/certs/client
     volumes:
       - jenkins-data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins-docker-certs:/certs/client:ro
     ports:
       - "8080:8080"
       - "50000:50000"
     networks:
       - jenkins
+         aliases:
+          - docker
+    command: --storage-driver overlay2
 
 networks:
   jenkins:
     driver: bridge
 
 volumes:
+  jenkins-docker-certs:
   jenkins-data:
