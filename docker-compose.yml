@@ -19,8 +19,8 @@ services:
       - "50000:50000"
     networks:
       - jenkins
-         aliases:
-          - docker
+          aliases:
+            - docker
     command: --storage-driver overlay2
 
 networks:
