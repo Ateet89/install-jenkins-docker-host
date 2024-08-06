@@ -5,7 +5,6 @@ services:
     image: host-jenkins
     container_name: host-jenkins
     restart: on-failure
-    user: root
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DOCKER_TLS_VERIFY=0
